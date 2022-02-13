@@ -3,6 +3,7 @@
     "name": "baby",
     "slug": "baby",
     "version": "1.0.0",
+    "privacy": "unlisted",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
