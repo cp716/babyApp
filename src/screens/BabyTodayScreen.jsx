@@ -2,15 +2,14 @@ import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
 import Date from '../components/Date';
 
-export default function BabyTodayScreen() {
+export default function BabyTodayScreen(props) {
+    const { navigation } = props;
     return (
         <View style={styles.container}>
         
-            <AppBar />
             <Date />
 
             <View>
@@ -26,7 +25,10 @@ export default function BabyTodayScreen() {
                 <Feather name="file-text" size="20" color="red" />
             </View>
 
-            <CircleButton name="plus" />
+            <CircleButton
+                name="plus"
+                onPress={() => { navigation.navigate('Create'); }}
+            />
 
         </View>
     );

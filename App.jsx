@@ -21,7 +21,16 @@ export default function App() {
     //<SignUpScreen />
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Create">
+      <Stack.Navigator 
+        initialRouteName="SignUp"
+        screenOptions={{
+          headerStyle: { backgroundColor: "#FFDB59" },
+          headerTitleStyle: { color: "#111111"},
+          headerTitle: 'Baby App',
+          headerTintColor: '#111111',
+          headerBackTitle: 'back',
+        }}
+      >
         <Stack.Screen name="BabyToday" component={BabyTodayScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
         <Stack.Screen name="Edit" component={EditScreen} />

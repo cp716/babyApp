@@ -1,17 +1,22 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import Button from '../components/Button';
-export default function LogInScreen() {
+export default function LogInScreen(props) {
+    const { navigation } = props;
     return (
         <View style={styles.container}>
-            <AppBar />
             <View style={styles.inner}>
                 <Text style={styles.title}>ログイン</Text>
                 <TextInput style={styles.input} value="Email Address" />
                 <TextInput style={styles.input} value="Password" />
-                <Button label="ログイン" />
+                <Button
+                    label="ログイン"
+                    onPress={() => { navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'BabyToday'}],
+                    }); }}
+                />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>会員登録は</Text>
                     <TouchableOpacity>
