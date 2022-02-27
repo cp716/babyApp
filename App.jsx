@@ -13,7 +13,7 @@ export default function App() {
     //<DetailScreen />
     //<EditScreen />
     //<CreateScreen />
-    //<LogInScreen />
-    <SignUpScreen />
+    <LogInScreen />
+    //<SignUpScreen />
   );
 }

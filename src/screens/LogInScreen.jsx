@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 import AppBar from '../components/AppBar';
 import Button from '../components/Button';
@@ -14,7 +14,9 @@ export default function LogInScreen() {
                 <Button label="ログイン" />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>会員登録は</Text>
-                    <Text style={styles.footerLink}>こちら</Text>
+                    <TouchableOpacity>
+                        <Text style={styles.footerLink}>こちら</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
