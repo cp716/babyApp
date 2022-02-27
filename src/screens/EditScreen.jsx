@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from 'react-native';
 
 import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
-import KeyboardSafeView from '../components/KeybordSafeView';
+import KeyboardSafeView from '../components/KeyboardSafeView';
 
 export default function EditScreen() {
     return (
