@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import firebase from 'firebase';
 
 import BabyTodayScreen from './src/screens/BabyTodayScreen';
 import DetailScreen from './src/screens/DetailScreen';
@@ -10,6 +11,19 @@ import LogInScreen from './src/screens/LogInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 
 const Stack = createStackNavigator();
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyA4zGDNlMfclgSpZ0158wIqVaAVWEoy610',
+  authDomain: 'babyapp-f33ed.firebaseapp.com',
+  projectId: 'babyapp-f33ed',
+  storageBucket: 'babyapp-f33ed.appspot.com',
+  messagingSenderId: '398656260650',
+  appId: '1:398656260650:web:b7979e522d6c4cc2c31153',
+};
+if(firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 
 export default function App() {
   return (

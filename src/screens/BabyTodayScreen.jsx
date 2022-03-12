@@ -3,7 +3,9 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import CircleButton from '../components/CircleButton';
+import MiniCircleButton from '../components/MiniCircleButton';
 import Date from '../components/Date';
+import TableTitle from '../components/TableTitle';
 
 export default function BabyTodayScreen(props) {
     const { navigation } = props;
@@ -12,17 +14,33 @@ export default function BabyTodayScreen(props) {
         
             <Date />
 
+            <TableTitle />
+
             <View>
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
-                        <Text style={styles.tableTitle}>時間</Text>
-                        <Text style={styles.tableTitle}>種類</Text>
-                        <Text style={styles.tableTitle}>記録</Text>
-                        <Text style={styles.tableTitle}>メモ</Text>
-                        <Text style={styles.tableTitle}>{'修正\n確認'}</Text>
+                        <Text style={styles.tableTitle}>09:00</Text>
+                        <Text style={styles.tableTitle}>母乳</Text>
+                        <Text style={styles.tableTitle}>{'左10分\n右10分'}</Text>
+                        <Text style={styles.tableTitle}><Feather name="file-text" size="15" color="black" /></Text>
+                        <Text style={styles.tableTitle}>
+                            <MiniCircleButton
+                                name="edit-2"
+                                onPress={() => { navigation.navigate('Create'); }}
+                            />
+                        </Text>
                     </View>
                 </View>
-                <Feather name="file-text" size="20" color="red" />
+
+                <View style={styles.table}>
+                    <View style={styles.tabledesign}>
+                        <Text style={styles.tableTitle}>母乳</Text>
+                        <Text style={styles.tableTitle}>母乳</Text>
+                        <Text style={styles.tableTitle}>母乳</Text>
+                        <Text style={styles.tableTitle}>母乳</Text>
+                        <Text style={styles.tableTitle}>母乳</Text>
+                    </View>
+                </View>
             </View>
 
             <CircleButton
@@ -40,7 +58,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F0F4F8',
     },
     table: {
-        backgroundColor: '#ffffff',
+        backgroundColor: 'red',
         flexDirection: 'row',
         paddingVertical: 16,
         justifyContent: 'center',
@@ -51,10 +69,10 @@ const styles = StyleSheet.create({
         borderBottomColor : 0,
     },
     tableTitle: {
-        fontSize: 16,
+        fontSize: 13,
         lineHeight: 16,
         paddingHorizontal: 19,
-        fontWeight: 'bold',
+        width: '20%',
     },
     tabledesign: {
         flexDirection: 'row',
