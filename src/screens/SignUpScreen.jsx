@@ -1,25 +1,63 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, } from 'react-native';
+import firebase from 'firebase'
 
 import Button from '../components/Button';
+
 export default function SignUpScreen(props) {
     const { navigation } = props;
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handlePress() {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                const { user } = userCredential;
+                console.log(user.uid);
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'BabyToday' }],
+                });
+            })
+            .catch((error) => {
+                console.log(error.code, error.massage);
+                Alert.alert(error.code);
+            });
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.inner}>
                 <Text style={styles.title}>会員登録</Text>
-                <TextInput style={styles.input} value="Email Address" />
-                <TextInput style={styles.input} value="Password" />
+                <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={(text) => { setEmail(text); }}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                    placeholder="メールアドレス"
+                    textContentType="emailAddress"
+                />
+                <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={(text) => { setPassword(text); }}
+                    autoCapitalize="none"
+                    placeholder="パスワード"
+                    secureTextEntry
+                    textContentType="password"
+                />
                 <Button
                     label="登録"
-                    onPress={() => { navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'BabyToday' }],
-                    }); }}
+                    onPress={handlePress}
                 />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>会員登録の方は</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'LogIn' }],
+                    }); }}>
                         <Text style={styles.footerLink}>こちら</Text>
                     </TouchableOpacity>
                 </View>

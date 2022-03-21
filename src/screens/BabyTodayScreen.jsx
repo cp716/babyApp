@@ -22,7 +22,7 @@ export default function BabyTodayScreen(props) {
                         <Text style={styles.tableTitle}>09:00</Text>
                         <Text style={styles.tableTitle}>母乳</Text>
                         <Text style={styles.tableTitle}>{'左10分\n右10分'}</Text>
-                        <Text style={styles.tableTitle}><Feather name="file-text" size="15" color="black" /></Text>
+                        <Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>
                         <Text style={styles.tableTitle}>
                             <MiniCircleButton
                                 name="edit-2"
@@ -34,7 +34,7 @@ export default function BabyTodayScreen(props) {
 
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
-                        <Text style={styles.tableTitle}>母乳</Text>
+                        <Text style={styles.tableTitle}>"母乳"</Text>
                         <Text style={styles.tableTitle}>母乳</Text>
                         <Text style={styles.tableTitle}>母乳</Text>
                         <Text style={styles.tableTitle}>母乳</Text>

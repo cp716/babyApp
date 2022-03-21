@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Button from '../components/Button';
 export default function LogInScreen(props) {
     const { navigation } = props;
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <View style={styles.container}>
             <View style={styles.inner}>
                 <Text style={styles.title}>ログイン</Text>
-                <TextInput style={styles.input} value="Email Address" />
-                <TextInput style={styles.input} value="Password" />
+                <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={(text) => { setEmail(text); }}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                    placeholder="メールアドレス"
+                    textContentType="emailAddress"
+                />
+                <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={(text) => { setPassword(text); }}
+                    autoCapitalize="none"
+                    placeholder="パスワード"
+                    secureTextEntry
+                    textContentType="password"
+                />
                 <Button
                     label="ログイン"
                     onPress={() => { navigation.reset({
@@ -19,7 +38,10 @@ export default function LogInScreen(props) {
                 />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>会員登録は</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'SignUp'}],
+                    }); }}>
                         <Text style={styles.footerLink}>こちら</Text>
                     </TouchableOpacity>
                 </View>
