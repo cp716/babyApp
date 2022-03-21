@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, } from 'react-native';
+import firebase from 'firebase';
 
 import Button from '../components/Button';
 export default function LogInScreen(props) {
     const { navigation } = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    function handlePress() {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredentail) => {
+            const { user } = userCredentail;
+            console.log(user.uid);
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'BabyToday'}],
+            });
+        })
+        .catch((error) => {
+            Alert.alert(error.code);
+        });   
+    }
 
     return (
         <View style={styles.container}>
@@ -31,10 +47,7 @@ export default function LogInScreen(props) {
                 />
                 <Button
                     label="ログイン"
-                    onPress={() => { navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'BabyToday'}],
-                    }); }}
+                    onPress={handlePress}
                 />
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>会員登録は</Text>
