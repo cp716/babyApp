@@ -1,14 +1,21 @@
 import { Feather } from '@expo/vector-icons';
-import React from 'react';
+import React, { useEffect }  from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import CircleButton from '../components/CircleButton';
 import MiniCircleButton from '../components/MiniCircleButton';
 import Date from '../components/Date';
 import TableTitle from '../components/TableTitle';
+import LogOutButton from '../components/LogOutButton';
 
 export default function BabyTodayScreen(props) {
     const { navigation } = props;
+    useEffect(() => {
+        navigation.setOptions({
+            headerRight: () => <LogOutButton />,
+        });
+    }, []);
+    
     return (
         <View style={styles.container}>
         
