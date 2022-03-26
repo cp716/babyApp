@@ -6,7 +6,7 @@ export default function AppBar() {
         <View style={styles.appber}>
             <View style={styles.appberInner}>
                 <Text style={styles.appberTitle}>Baby App</Text>
-                <Text style={styles.appberRight}>ログアウトテスト</Text>
+                <Text style={styles.appberRight}>ログアウトテスト堀古さん</Text>
             </View>
         </View>
     )
