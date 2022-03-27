@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Feather } from '@expo/vector-icons';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import MiniCircleButton from '../components/MiniCircleButton';
 import { useNavigation } from '@react-navigation/native';
 import { shape, string, instanceOf, arrayOf } from 'prop-types';
@@ -9,29 +9,37 @@ import { shape, string, instanceOf, arrayOf } from 'prop-types';
 export default function CreateData(props) {
     const { memos } = props;
     const navigation = useNavigation();
-    return (
-        <View>
-            {memos.map((memo) => (
-                <TouchableOpacity
-                    key={memo.id}
-                    onPress={() => {navigation.navigate('Detail');}}
-                >
-                    <View style={styles.table}>
-                        <View style={styles.tabledesign}>
-                            <Text style={styles.tableTitle}>{String(memo.updatedAt)}</Text>
-                            <Text style={styles.tableTitle}>{memo.bodyText}</Text>
-                            <Text style={styles.tableTitle}>{'左10分\n右10分'}</Text>
-                            <Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>
-                            <Text style={styles.tableTitle}>
-                                <MiniCircleButton
-                                    name="edit-2"
-                                    onPress={() => { navigation.navigate('Create'); }}
-                                />
-                            </Text>
-                        </View>
+
+    function renderItem({ item }) {
+        return (
+            <TouchableOpacity
+                onPress={() => {navigation.navigate('Detail', { id: item.id });}}
+            >
+                <View style={styles.table}>
+                    <View style={styles.tabledesign}>
+                        <Text style={styles.tableTitle}>{String(item.updatedAt)}</Text>
+                        <Text style={styles.tableTitle}>{item.bodyText}</Text>
+                        <Text style={styles.tableTitle}>{'左10分\n右10分'}</Text>
+                        <Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>
+                        <Text style={styles.tableTitle}>
+                            <MiniCircleButton
+                                name="edit-2"
+                                onPress={() => { navigation.navigate('Create'); }}
+                            />
+                        </Text>
                     </View>
-                </TouchableOpacity>
-            ))}
+                </View>
+            </TouchableOpacity>
+        );
+    } 
+
+    return (
+        <View style={styles.container}>
+            <FlatList
+                data={memos}
+                renderItem={renderItem}
+                keyExtractor={(item) => { return item.id; }}
+            />
         </View>
     )
 }
@@ -45,6 +53,9 @@ CreateData.propTypes = {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     table: {
         backgroundColor: '#ffffff',
         flexDirection: 'row',
