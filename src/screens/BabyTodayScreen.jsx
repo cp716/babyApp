@@ -1,19 +1,46 @@
-import { Feather } from '@expo/vector-icons';
-import React, { useEffect }  from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect, useState }  from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
+import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
-import MiniCircleButton from '../components/MiniCircleButton';
 import Date from '../components/Date';
 import TableTitle from '../components/TableTitle';
+import CreateData from '../components/CreateData';
 import LogOutButton from '../components/LogOutButton';
 
 export default function BabyTodayScreen(props) {
     const { navigation } = props;
+    const [memos, setMemos] = useState([]);
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => <LogOutButton />,
         });
+    }, []);
+
+    useEffect(() => {
+        const db =firebase.firestore();
+        const { currentUser } = firebase.auth();
+        let unsubscribe = () => {};
+        if (currentUser) {
+            const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'asc');
+            unsubscribe = ref.onSnapshot((snapshot) => {
+                const userMemos = [];
+                snapshot.forEach((doc) => {
+                    console.log(doc.id, doc.data());
+                    const data = doc.data();
+                    userMemos.push({
+                        id: doc.id,
+                        bodyText: data.bodyText,
+                        updatedAt: data.updatedAt.toDate(),
+                    });
+                });
+                setMemos(userMemos);
+            }, (error) => {
+                console.log(error);
+                Alert.alert('データの読み込みに失敗しました。');
+            });
+        }
+        return unsubscribe;
     }, []);
     
     return (
@@ -23,32 +50,9 @@ export default function BabyTodayScreen(props) {
 
             <TableTitle />
 
-            <View>
-                <View style={styles.table}>
-                    <View style={styles.tabledesign}>
-                        <Text style={styles.tableTitle}>09:00</Text>
-                        <Text style={styles.tableTitle}>母乳</Text>
-                        <Text style={styles.tableTitle}>{'左10分\n右10分'}</Text>
-                        <Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>
-                        <Text style={styles.tableTitle}>
-                            <MiniCircleButton
-                                name="edit-2"
-                                onPress={() => { navigation.navigate('Create'); }}
-                            />
-                        </Text>
-                    </View>
-                </View>
+            <CreateData memos={memos} />
 
-                <View style={styles.table}>
-                    <View style={styles.tabledesign}>
-                        <Text style={styles.tableTitle}>"母乳"</Text>
-                        <Text style={styles.tableTitle}>母乳</Text>
-                        <Text style={styles.tableTitle}>母乳</Text>
-                        <Text style={styles.tableTitle}>母乳</Text>
-                        <Text style={styles.tableTitle}>母乳</Text>
-                    </View>
-                </View>
-            </View>
+            
 
             <CircleButton
                 name="plus"
@@ -63,26 +67,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F0F4F8',
-    },
-    table: {
-        backgroundColor: 'red',
-        flexDirection: 'row',
-        paddingVertical: 16,
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderTopColor : 'rgba(0, 0, 0, 100)',
-        borderLeftColor : 0,
-        borderRightColor : 0,
-        borderBottomColor : 0,
-    },
-    tableTitle: {
-        fontSize: 13,
-        lineHeight: 16,
-        paddingHorizontal: 19,
-        width: '20%',
-    },
-    tabledesign: {
-        flexDirection: 'row',
-        alignItems:'center',
     },
 });
