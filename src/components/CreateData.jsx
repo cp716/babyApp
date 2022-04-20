@@ -3,6 +3,7 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import MiniCircleButton from '../components/MiniCircleButton';
+import CreateDataDesign from '../components/CreateDataDesign';
 import { useNavigation } from '@react-navigation/native';
 import { shape, string, instanceOf, arrayOf } from 'prop-types';
 
@@ -16,17 +17,20 @@ export default function CreateData(props) {
                 onPress={() => {navigation.navigate('Detail', { id: item.id });}}>
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
-                        <Text style={styles.tableTitle}>{String(item.updatedAt.getHours()).padStart(2, '0')}:{String(item.updatedAt.getMinutes()).padStart(2, '0')}</Text>
-                        <Text style={styles.tableTitle}>母乳</Text>
-                        <Text style={styles.tableTitle}>{'左10分\n右10分'}</Text>
+                        <CreateDataDesign date = {<Text style={styles.tableTitle}>{String(item.updatedAt.getHours()).padStart(2, '0')}:{String(item.updatedAt.getMinutes()).padStart(2, '0')}</Text>} />
+                        <CreateDataDesign date = '母乳' />
+                        <CreateDataDesign date = {'左10分\n右10分'} />
                         {/*<Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>*/}
-                        <Text style={styles.tableTitle}>{item.bodyText}</Text>
-                        <Text style={styles.tableTitle}>
-                            <MiniCircleButton
-                                name="edit-2"
-                                onPress={() => { navigation.navigate('Create'); }}
-                            />
-                        </Text>
+                        <CreateDataDesign date = {<Text style={styles.tableTitle}>{item.bodyText}</Text>} />
+                        <CreateDataDesign date = {
+                            <Text style={styles.tableTitle}>
+                                ×
+                                {/*<MiniCircleButton
+                                    name="edit-2"
+                                    onPress={() => { navigation.navigate('Create'); }}
+                                />*/}
+                            </Text>
+                        } />
                     </View>
                 </View>
             </TouchableOpacity>
@@ -69,9 +73,10 @@ const styles = StyleSheet.create({
     },
     tableTitle: {
         fontSize: 13,
-        lineHeight: 16,
-        paddingHorizontal: 19,
+        //lineHeight: 16,
+        //paddingHorizontal: 19,
         //width: '21%',
+        //textAlign: 'center',
     },
     tabledesign: {
         flexDirection: 'row',
