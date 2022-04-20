@@ -13,14 +13,14 @@ export default function CreateData(props) {
     function renderItem({ item }) {
         return (
             <TouchableOpacity
-                onPress={() => {navigation.navigate('Detail', { id: item.id });}}
-            >
+                onPress={() => {navigation.navigate('Detail', { id: item.id });}}>
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
-                        <Text style={styles.tableTitle}>{String(item.updatedAt)}</Text>
-                        <Text style={styles.tableTitle}>{item.bodyText}</Text>
+                        <Text style={styles.tableTitle}>{String(item.updatedAt.getHours()).padStart(2, '0')}:{String(item.updatedAt.getMinutes()).padStart(2, '0')}</Text>
+                        <Text style={styles.tableTitle}>母乳</Text>
                         <Text style={styles.tableTitle}>{'左10分\n右10分'}</Text>
-                        <Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>
+                        {/*<Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>*/}
+                        <Text style={styles.tableTitle}>{item.bodyText}</Text>
                         <Text style={styles.tableTitle}>
                             <MiniCircleButton
                                 name="edit-2"
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
         lineHeight: 16,
         paddingHorizontal: 19,
-        width: '20%',
+        //width: '21%',
     },
     tabledesign: {
         flexDirection: 'row',

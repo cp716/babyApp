@@ -47,8 +47,13 @@ export default function BabyTodayScreen(props) {
         <View style={styles.container}>
         
             <Date />
-
-            <TableTitle />
+            <View style={styles.tableTitle}>
+                <TableTitle title = '時間' />
+                <TableTitle title = '種類' />
+                <TableTitle title = '記録' />
+                <TableTitle title = 'メモ' />
+                <TableTitle title = '削除' />
+            </View>
 
             <CreateData memos={memos} />
 
@@ -67,5 +72,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F0F4F8',
+    },
+    tableTitle: {
+        flexDirection: 'row',
     },
 });
