@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import MiniCircleButton from '../components/MiniCircleButton';
 import CreateDataDesign from '../components/CreateDataDesign';
+import CreateMemoDataDesign from './CreateMemoDataDesign';
 import { useNavigation } from '@react-navigation/native';
 import { shape, string, int, instanceOf, arrayOf } from 'prop-types';
 
@@ -26,12 +27,12 @@ export default function CreateData(props) {
                         <CreateDataDesign date = {'母乳'} />
                         <CreateDataDesign date = {
                             <Text style={styles.tableTitle}>
-                                {'左'}{("0" + item.timeLeft ).slice(-2)}{'分\n'}
-                                {'右'}{("0" + item.timeRight ).slice(-2)}{'分'}
+                                {'左'}{("00" + item.timeLeft ).slice(-2)}{'分\n'}
+                                {'右'}{("00" + item.timeRight ).slice(-2)}{'分'}
                             </Text>
                         } />
                         {/*<Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>*/}
-                        <CreateDataDesign date = {<Text style={styles.tableTitle}>{item.bodyText}</Text>} />
+                        <CreateMemoDataDesign date = {<Text style={styles.tableTitle} >{item.bodyText}</Text>} />
                         <CreateDataDesign date = {
                             <Text style={styles.tableTitle}>
                                 ×
@@ -61,8 +62,8 @@ export default function CreateData(props) {
 CreateData.propTypes = {
     memos: arrayOf(shape({
         id: string,
-        timeLeft: int,
-        timeRight: int,
+        timeLeft: string,
+        timeRight: string,
         bodyText: string,
         updatedAt: instanceOf(Date),
     })).isRequired,
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     },
     table: {
         backgroundColor: '#ffffff',
-        flexDirection: 'row',
+        //flexDirection: 'row',
         paddingVertical: 16,
         justifyContent: 'center',
         borderWidth: 1,
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
         borderLeftColor : 0,
         borderRightColor : 0,
         borderBottomColor : 0,
+        height: 70,
     },
     tableTitle: {
         fontSize: 13,

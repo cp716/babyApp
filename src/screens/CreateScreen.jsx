@@ -42,6 +42,7 @@ export default function CreateScreen(props) {
                         style={styles.input}
                         onChangeText={(text) => { setTimeLeft(text); }}
                         autoFocus
+                        maxLength={2}
                     />
                 <Text>分</Text>
             </View>
@@ -54,6 +55,7 @@ export default function CreateScreen(props) {
                         style={styles.input}
                         onChangeText={(text) => { setTimeRight(text); }}
                         autoFocus
+                        maxLength={2}
                     />
                 <Text>分</Text>
             </View>
@@ -102,6 +104,6 @@ const styles = StyleSheet.create({
         textAlignVertical: 'top',
         fontSize: 16,
         lineHeight: 24,
-        backgroundColor: '#185749'
+        backgroundColor: '#ffffff'
     },
 });
