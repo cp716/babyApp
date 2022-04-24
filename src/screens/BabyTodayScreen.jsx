@@ -30,6 +30,8 @@ export default function BabyTodayScreen(props) {
                     const data = doc.data();
                     userMemos.push({
                         id: doc.id,
+                        timeLeft: data.timeLeft,
+                        timeRight: data.timeRight,
                         bodyText: data.bodyText,
                         updatedAt: data.updatedAt.toDate(),
                     });

@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native
 import MiniCircleButton from '../components/MiniCircleButton';
 import CreateDataDesign from '../components/CreateDataDesign';
 import { useNavigation } from '@react-navigation/native';
-import { shape, string, instanceOf, arrayOf } from 'prop-types';
+import { shape, string, int, instanceOf, arrayOf } from 'prop-types';
 
 export default function CreateData(props) {
     const { memos } = props;
@@ -17,9 +17,19 @@ export default function CreateData(props) {
                 onPress={() => {navigation.navigate('Detail', { id: item.id });}}>
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
-                        <CreateDataDesign date = {<Text style={styles.tableTitle}>{String(item.updatedAt.getHours()).padStart(2, '0')}:{String(item.updatedAt.getMinutes()).padStart(2, '0')}</Text>} />
-                        <CreateDataDesign date = '母乳' />
-                        <CreateDataDesign date = {'左10分\n右10分'} />
+                        <CreateDataDesign date = {
+                            <Text style={styles.tableTitle}>
+                                {String(item.updatedAt.getHours()).padStart(2, '0')}:
+                                {String(item.updatedAt.getMinutes()).padStart(2, '0')}
+                            </Text>
+                        } />
+                        <CreateDataDesign date = {'母乳'} />
+                        <CreateDataDesign date = {
+                            <Text style={styles.tableTitle}>
+                                {'左'}{("0" + item.timeLeft ).slice(-2)}{'分\n'}
+                                {'右'}{("0" + item.timeRight ).slice(-2)}{'分'}
+                            </Text>
+                        } />
                         {/*<Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>*/}
                         <CreateDataDesign date = {<Text style={styles.tableTitle}>{item.bodyText}</Text>} />
                         <CreateDataDesign date = {
@@ -51,6 +61,8 @@ export default function CreateData(props) {
 CreateData.propTypes = {
     memos: arrayOf(shape({
         id: string,
+        timeLeft: int,
+        timeRight: int,
         bodyText: string,
         updatedAt: instanceOf(Date),
     })).isRequired,
