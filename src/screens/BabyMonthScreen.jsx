@@ -2,7 +2,6 @@ import React, { useEffect, useState }  from 'react';
 import { View, Text, StyleSheet, Alert, Image } from 'react-native';
 import firebase from 'firebase';
 
-import CircleButton from '../components/CircleButton';
 import Date from '../components/Date';
 import TableTitle from '../components/TableTitle';
 import CreateData from '../components/CreateData';
@@ -57,21 +56,20 @@ export default function BabyMonthScreen(props) {
                     <TableTitle title = {'修正/確認'} />
                 </View>
             </View>
-            <CreateData memos={memos} />
-            <View style={styles.advertisement}>
-                <Image style={{width: '90%', height: '100%'}}
-                    resizeMode='contain'
-                    source={require('../img/IMG_2417.jpg')}
-                />
+            {/*<CreateData memos={memos} />*/}
+            <View style={styles.footer}>
+                <View style={styles.advertisement}>
+                    <Image style={{width: '95%', height: '100%'}}
+                        resizeMode='contain'
+                        source={require('../img/IMG_2417.jpg')}
+                    />
+                </View>
+                <View style={styles.menu}>
+                    <Text style={styles.tableTitle} onPress={() => { navigation.navigate('BabyToday'); }}>
+                        戻る
+                    </Text>
+                </View>
             </View>
-            <View style={styles.menu}>
-                <Text>カスタマイズ</Text>
-            </View>
-            <CircleButton
-                name="plus"
-                onPress={() => { navigation.navigate('Create'); }}
-            />
-
         </View>
     );
 }
@@ -81,16 +79,24 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F0F4F8',
     },
+    footer: {
+        height:'25%',
+        width:'100%',
+        position:'absolute',
+        bottom: 0,
+        //paddingBottom: 50,
+    },
     tableTitle: {
         flexDirection: 'row',
     },
     advertisement: {
-        height: '10%',
+        height: '40%',
         //width: '50%',
         alignItems:'center',
+        backgroundColor: '#748292',
     },
     menu: {
-        height: '15%',
-        backgroundColor: '#859602'
+        height: '60%',
+        backgroundColor: '#859602',
     },
 });

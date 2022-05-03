@@ -6,16 +6,26 @@ import MiniCircleButton from '../components/MiniCircleButton';
 import CreateDataDesign from '../components/CreateDataDesign';
 import CreateMemoDataDesign from './CreateMemoDataDesign';
 import { useNavigation } from '@react-navigation/native';
-import { shape, string, int, instanceOf, arrayOf } from 'prop-types';
+import { shape, string, instanceOf, arrayOf } from 'prop-types';
 
 export default function CreateData(props) {
     const { memos } = props;
     const navigation = useNavigation();
 
+    const date = new Date()
+    const nYear = date.getFullYear();
+    const nMonth = date.getMonth() + 1;
+    const nDay = date.getDate();
+    const today = nYear + '年' + nMonth + '月' + nDay + '日';
+    
     function renderItem({ item }) {
-        return (
-            <TouchableOpacity
-                onPress={() => {navigation.navigate('Detail', { id: item.id });}}>
+
+        const year = item.updatedAt.getFullYear();
+        const month = item.updatedAt.getMonth() + 1;
+        const day = item.updatedAt.getDate();
+        const test = year + '年' + month + '月' + day + '日';
+
+            return (    
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
                         <CreateDataDesign date = {
@@ -37,19 +47,18 @@ export default function CreateData(props) {
                             <Text style={styles.tableTitle}>
                                 {<MiniCircleButton
                                     name="edit-2"
-                                    onPress={() => { navigation.navigate('Create'); }}
+                                    onPress={() => {navigation.navigate('Detail', { id: item.id });}}
                                 />}
                             </Text>
                         } />
                     </View>
                 </View>
-            </TouchableOpacity>
-        );
+            );        
     } 
-
+        
     return (
         <View style={styles.container}>
-            <FlatList
+            <FlatList inverted
                 data={memos}
                 renderItem={renderItem}
                 keyExtractor={(item) => { return item.id; }}

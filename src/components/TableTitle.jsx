@@ -25,13 +25,15 @@ const styles = StyleSheet.create({
     testTable: {
         backgroundColor: '#ffffff',
         flexDirection: 'row',
-        paddingVertical: 16,
+        //paddingVertical: 16,
         justifyContent: 'center',
         //borderWidth: 1,
         //borderTopColor : 'rgba(0, 0, 0, 100)',
         //borderLeftColor : 0,
         //borderRightColor : 0,
-        //borderBottomColor : 0,        
+        //borderBottomColor : 0, 
+        height: '100%',
+        alignItems: 'center',
     },
     testTabledesign: {
         //flexDirection: 'row',

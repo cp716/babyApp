@@ -40,9 +40,4 @@ const styles = StyleSheet.create({
         shadowRadius: 8,//ios
         elevation: 8,//Android
     },
-    circleButtonLabel: {
-        color: '#747474',
-        fontSize: 40,
-        lineHeight: 40,
-    },
 });
