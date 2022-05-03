@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 
 import BabyTodayScreen from './src/screens/BabyTodayScreen';
+import BabyMonthScreen from './src/screens/BabyMonthScreen';
 import DetailScreen from './src/screens/DetailScreen';
 import EditScreen from './src/screens/EditScreen';
 import CreateScreen from './src/screens/CreateScreen';
@@ -33,7 +34,7 @@ export default function App() {
 
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="LogIn"
+        initialRouteName="Login"
         screenOptions={{
           headerStyle: { backgroundColor: "#FFDB59" },
           headerTitleStyle: { color: "#111111"},
@@ -44,6 +45,7 @@ export default function App() {
         }}
       >
         <Stack.Screen name="BabyToday" component={BabyTodayScreen} />
+        <Stack.Screen name="BabyMonth" component={BabyMonthScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
         <Stack.Screen name="Edit" component={EditScreen} />
         <Stack.Screen name="Create" component={CreateScreen} />

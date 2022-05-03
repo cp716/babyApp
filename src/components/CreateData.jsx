@@ -35,11 +35,10 @@ export default function CreateData(props) {
                         <CreateMemoDataDesign date = {<Text style={styles.tableTitle} >{item.bodyText}</Text>} />
                         <CreateDataDesign date = {
                             <Text style={styles.tableTitle}>
-                                ×
-                                {/*<MiniCircleButton
+                                {<MiniCircleButton
                                     name="edit-2"
                                     onPress={() => { navigation.navigate('Create'); }}
-                                />*/}
+                                />}
                             </Text>
                         } />
                     </View>
@@ -76,14 +75,14 @@ const styles = StyleSheet.create({
     table: {
         backgroundColor: '#ffffff',
         //flexDirection: 'row',
-        paddingVertical: 16,
+        //paddingVertical: 16,
         justifyContent: 'center',
         borderWidth: 1,
         borderTopColor : 'rgba(0, 0, 0, 100)',
         borderLeftColor : 0,
         borderRightColor : 0,
         borderBottomColor : 0,
-        height: 70,
+        height: 50,
     },
     tableTitle: {
         fontSize: 13,

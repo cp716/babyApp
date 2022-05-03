@@ -22,29 +22,6 @@ export default function TableTitle(props) {
 }
 
 const styles = StyleSheet.create({
-    table: {
-        backgroundColor: '#ffffff',
-        flexDirection: 'row',
-        paddingVertical: 16,
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderTopColor : 'rgba(0, 0, 0, 100)',
-        borderLeftColor : 0,
-        borderRightColor : 0,
-        borderBottomColor : 0,
-    },
-    tableTitle: {
-        fontSize: 16,
-        lineHeight: 16,
-        paddingHorizontal: 19,
-        fontWeight: 'bold',
-        width: '20%',
-    },
-    tabledesign: {
-        flexDirection: 'row',
-        alignItems:'center',
-    },
-
     testTable: {
         backgroundColor: '#ffffff',
         flexDirection: 'row',
@@ -62,7 +39,7 @@ const styles = StyleSheet.create({
         
     },
     testTableTitle: {
-        fontSize: 16,
+        fontSize: 13,
         lineHeight: 16,
         //padding: 3 ,
         //margin: '1%',

@@ -8,7 +8,7 @@ import TableTitle from '../components/TableTitle';
 import CreateData from '../components/CreateData';
 import LogOutButton from '../components/LogOutButton';
 
-export default function BabyTodayScreen(props) {
+export default function BabyMonthScreen(props) {
     const { navigation } = props;
     const [memos, setMemos] = useState([]);
     useEffect(() => {
@@ -50,10 +50,10 @@ export default function BabyTodayScreen(props) {
             <View>
                 <Date />
                 <View style={styles.tableTitle}>
-                    <TableTitle title = '時間' />
-                    <TableTitle title = '種類' />
-                    <TableTitle title = '記録' />
-                    <TableTitle title = 'メモ' />
+                    <TableTitle title = '日' />
+                    <TableTitle title = '母乳' />
+                    <TableTitle title = '哺乳瓶(ミルク)' />
+                    <TableTitle title = '哺乳瓶(母乳)' />
                     <TableTitle title = {'修正/確認'} />
                 </View>
             </View>
