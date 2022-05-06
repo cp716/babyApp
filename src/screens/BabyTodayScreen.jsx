@@ -3,20 +3,19 @@ import { View, Text, StyleSheet, Alert, Image, TouchableOpacity } from 'react-na
 import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
-import Date from '../components/Date';
+//import Date from '../components/Date';
 import TableTitle from '../components/TableTitle';
 import CreateData from '../components/CreateData';
 import LogOutButton from '../components/LogOutButton';
 
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
+
 export default function BabyTodayScreen(props) {
     const { navigation } = props;
-    const [memos, setMemos] = useState([]);
-
-    const date = new Date();
-    const nYear = date.getFullYear;
-    const nMonth = date.getMonth + 1;
-    const nDay = date.getDate;
-    const today = nYear + '年' + nMonth + '月' + nDay + '日';
+    const [memos, setMemos] = useState([]);    
     
     useEffect(() => {
         navigation.setOptions({
@@ -27,12 +26,12 @@ export default function BabyTodayScreen(props) {
     useEffect(() => {
         const db =firebase.firestore();
         const { currentUser } = firebase.auth();
+    
         let unsubscribe = () => {};
         if (currentUser) {
-            const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'asc');
+            const ref = db.collection(`users/${currentUser.uid}/${year}/${month}/${day}`).orderBy('updatedAt', 'asc');
             unsubscribe = ref.onSnapshot((snapshot) => {
                 const userMemos = [];
-                if (today) {
                     snapshot.forEach((doc) => {
                         console.log(doc.id, doc.data());
                         const data = doc.data();
@@ -44,7 +43,6 @@ export default function BabyTodayScreen(props) {
                             updatedAt: data.updatedAt.toDate(),
                         });
                     });
-                }
                 setMemos(userMemos);
             }, (error) => {
                 console.log(error);
@@ -57,7 +55,7 @@ export default function BabyTodayScreen(props) {
     return (
         <View style={styles.container}>
             <View style={{height: '15%'}}>
-                <Date />
+                {/*<Date />*/}
             </View>
             <View style={{height: '7%'}}>
                 <View style={styles.tableTitle}>
@@ -98,13 +96,15 @@ export default function BabyTodayScreen(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F0F4F8',
+        backgroundColor: '#865456',
     },
     footer: {
         height:'25%',
         width:'100%',
         position:'absolute',
         bottom: 0,
+        borderTopWidth: 1,
+        borderTopColor : 'rgba(0, 0, 0, 100)',
         //paddingBottom: 50,
     },
     tableTitle: {

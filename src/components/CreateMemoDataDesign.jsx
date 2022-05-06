@@ -6,7 +6,7 @@ export default function CreateMemoDataDesign(props) {
     return (
             <View>
                 <View style={styles.testTable}>
-                    <Text numberOfLines={1} ellipsizeMode="tail" style={styles.testTableTitle} >{date}</Text>
+                    <Text numberOfLines={1} ellipsizeMode="clip" style={styles.testTableTitle} >{date}</Text>
                 </View>
             </View>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Feather } from '@expo/vector-icons';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, DatePickerIOS } from 'react-native';
 import MiniCircleButton from '../components/MiniCircleButton';
 import CreateDataDesign from '../components/CreateDataDesign';
 import CreateMemoDataDesign from './CreateMemoDataDesign';
@@ -12,19 +12,11 @@ export default function CreateData(props) {
     const { memos } = props;
     const navigation = useNavigation();
 
-    const date = new Date()
-    const nYear = date.getFullYear();
-    const nMonth = date.getMonth() + 1;
-    const nDay = date.getDate();
-    const today = nYear + '年' + nMonth + '月' + nDay + '日';
+    
     
     function renderItem({ item }) {
 
-        const year = item.updatedAt.getFullYear();
-        const month = item.updatedAt.getMonth() + 1;
-        const day = item.updatedAt.getDate();
-        const test = year + '年' + month + '月' + day + '日';
-
+        
             return (    
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
@@ -58,7 +50,7 @@ export default function CreateData(props) {
         
     return (
         <View style={styles.container}>
-            <FlatList inverted
+            <FlatList
                 data={memos}
                 renderItem={renderItem}
                 keyExtractor={(item) => { return item.id; }}
@@ -86,12 +78,13 @@ const styles = StyleSheet.create({
         //flexDirection: 'row',
         //paddingVertical: 16,
         justifyContent: 'center',
-        borderWidth: 1,
-        borderTopColor : 'rgba(0, 0, 0, 100)',
-        borderLeftColor : 0,
-        borderRightColor : 0,
-        borderBottomColor : 0,
+        //borderTopWidth: 0.5,
+        //borderBottomWidth: 0.5,
+        //borderTopColor : 'rgba(0, 0, 0, 100)',
+        //borderBottomColor: 'rgba(0, 0, 0, 100)',
         height: 50,
+        marginBottom:1,
+        //marginBottom:1,
     },
     tableTitle: {
         fontSize: 13,

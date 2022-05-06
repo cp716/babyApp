@@ -23,7 +23,7 @@ export default function TableTitle(props) {
 
 const styles = StyleSheet.create({
     testTable: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#eee8aa',
         flexDirection: 'row',
         //paddingVertical: 16,
         justifyContent: 'center',

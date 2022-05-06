@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Picker } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Picker, FormControl, TextField } from 'react-native';
 
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
-
 import firebase from 'firebase';
+
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
 
 export default function CreateScreen(props) {
     const { navigation } = props;
@@ -15,7 +19,7 @@ export default function CreateScreen(props) {
     function handlePress() {
         const db = firebase.firestore();
         const { currentUser } = firebase.auth();
-        const ref = db.collection(`users/${currentUser.uid}/memos`);
+        const ref = db.collection(`users/${currentUser.uid}/${year}/${month}/${day}`);
         ref.add({
             timeLeft,
             timeRight,
