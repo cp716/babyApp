@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Date() {
+export default function Datetime() {
     return (
         <View style={styles.date}>
             <Text style={styles.dateText}>
