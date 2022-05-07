@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from 'react';
 import { View, Text, StyleSheet, Alert, Image } from 'react-native';
 import firebase from 'firebase';
 
-import Date from '../components/Date';
+//import Datetime from '../components/Datetime';
 import TableTitle from '../components/TableTitle';
 import CreateData from '../components/CreateData';
 import LogOutButton from '../components/LogOutButton';
@@ -47,7 +47,7 @@ export default function BabyMonthScreen(props) {
     return (
         <View style={styles.container}>
             <View>
-                <Date />
+                {/*<Datetime />*/}
                 <View style={styles.tableTitle}>
                     <TableTitle title = '日' />
                     <TableTitle title = '母乳' />

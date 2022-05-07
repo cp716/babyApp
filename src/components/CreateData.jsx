@@ -7,16 +7,14 @@ import CreateDataDesign from '../components/CreateDataDesign';
 import CreateMemoDataDesign from './CreateMemoDataDesign';
 import { useNavigation } from '@react-navigation/native';
 import { shape, string, instanceOf, arrayOf } from 'prop-types';
+import { memo } from 'react/cjs/react.production.min';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function CreateData(props) {
     const { memos } = props;
     const navigation = useNavigation();
-
     
-    
-    function renderItem({ item }) {
-
-        
+    function renderItem({ item }) {    
             return (    
                 <View style={styles.table}>
                     <View style={styles.tabledesign}>
@@ -39,7 +37,13 @@ export default function CreateData(props) {
                             <Text style={styles.tableTitle}>
                                 {<MiniCircleButton
                                     name="edit-2"
-                                    onPress={() => {navigation.navigate('Detail', { id: item.id });}}
+                                    onPress={() => {navigation.navigate('Detail', { 
+                                        id: item.id,
+                                        bodyText: item.bodyText ,
+                                        timeLeft: item.timeLeft,
+                                        timeRight: item.timeRight,
+                                        updatedAt: item.updatedAt
+                                    });}}
                                 />}
                             </Text>
                         } />

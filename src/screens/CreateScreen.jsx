@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Picker, FormControl, TextField } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
 import firebase from 'firebase';
+import Test from '../components/Test';
 
 const date = new Date();
 const year = date.getFullYear();
 const month = date.getMonth() + 1;
 const day = date.getDate();
-
+  
 export default function CreateScreen(props) {
     const { navigation } = props;
     const [bodyText, setBodyText] = useState('');
@@ -66,7 +67,7 @@ export default function CreateScreen(props) {
             <View style={styles.inputContainer}>
                 <Text>メモ</Text>
                 <TextInput
-                        //keyboardType="number-pad"
+                        keyboardType="web-search"
                         value={bodyText}
                         multiline
                         style={styles.input}
@@ -74,6 +75,7 @@ export default function CreateScreen(props) {
                         autoFocus
                 />
             </View>
+            <Test />
             <CircleButton
                 name="check"
                 onPress={handlePress}

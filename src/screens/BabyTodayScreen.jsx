@@ -3,10 +3,11 @@ import { View, Text, StyleSheet, Alert, Image, TouchableOpacity } from 'react-na
 import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
-//import Date from '../components/Date';
+import Datetime from '../components/Datetime';
 import TableTitle from '../components/TableTitle';
 import CreateData from '../components/CreateData';
 import LogOutButton from '../components/LogOutButton';
+import Loading from '../components/Loading';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -15,7 +16,8 @@ const day = date.getDate();
 
 export default function BabyTodayScreen(props) {
     const { navigation } = props;
-    const [memos, setMemos] = useState([]);    
+    const [memos, setMemos] = useState([]);
+    const [isLoading, setLoading] = useState(false);
     
     useEffect(() => {
         navigation.setOptions({
@@ -29,6 +31,7 @@ export default function BabyTodayScreen(props) {
     
         let unsubscribe = () => {};
         if (currentUser) {
+            setLoading(true);
             const ref = db.collection(`users/${currentUser.uid}/${year}/${month}/${day}`).orderBy('updatedAt', 'asc');
             unsubscribe = ref.onSnapshot((snapshot) => {
                 const userMemos = [];
@@ -44,8 +47,10 @@ export default function BabyTodayScreen(props) {
                         });
                     });
                 setMemos(userMemos);
+                setLoading(false);
             }, (error) => {
                 console.log(error);
+                setLoading(false);
                 Alert.alert('データの読み込みに失敗しました。');
             });
         }
@@ -54,8 +59,9 @@ export default function BabyTodayScreen(props) {
     
     return (
         <View style={styles.container}>
+            <Loading isLoading={isLoading} />
             <View style={{height: '15%'}}>
-                {/*<Date />*/}
+                <Datetime />
             </View>
             <View style={{height: '7%'}}>
                 <View style={styles.tableTitle}>
