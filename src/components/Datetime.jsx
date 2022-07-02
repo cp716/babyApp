@@ -57,13 +57,17 @@ export default function Datetime() {
     return (
         <View style={styles.date}>
              <TouchableOpacity onPress={() => onpress(month,day - 1,youbi-1,0)} style={styles.dateText}>
-             ◀︎    
+             <Text>
+             ◀︎
+             </Text>    
             </TouchableOpacity>
             <Text style={styles.dateText}>
                 {year}年{month}月{day}日({dayOfWeek[youbi]})
             </Text>
-            <TouchableOpacity onPress={() => onpress(month, day + 1,youbi+1,1)} style={styles.dateText}>    
+            <TouchableOpacity onPress={() => onpress(month, day + 1,youbi+1,1)} style={styles.dateText}>
+            <Text>    
             ▶︎
+            </Text>
             </TouchableOpacity>
         </View>
     )
