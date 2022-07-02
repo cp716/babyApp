@@ -65,7 +65,7 @@ export default function KeyboardSafeView({ children, style }) {
 
 KeyboardSafeView.propTypes = {
   children: node.isRequired,
-  style: ViewPropTypes.style,
+  //style: ViewPropTypes.style,
 };
 
 KeyboardSafeView.defaultProps = {
