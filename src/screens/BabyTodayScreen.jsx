@@ -102,7 +102,7 @@ export default function BabyTodayScreen(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#865456',
+        backgroundColor: '#F0F4F8',
     },
     footer: {
         height:'25%',
