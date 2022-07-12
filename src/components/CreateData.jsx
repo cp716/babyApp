@@ -31,22 +31,17 @@ export default function CreateData(props) {
                                 {'右'}{("00" + item.timeRight ).slice(-2)}{'分'}
                             </Text>
                         } />
-                        {/*<Text style={styles.tableTitle}><Feather name="file-text" size={15} color="black" /></Text>*/}
                         <CreateMemoDataDesign date = {<Text style={styles.tableTitle} >{item.bodyText}</Text>} />
-                        <CreateDataDesign date = {
-                            <Text style={styles.tableTitle}>
-                                {<MiniCircleButton
+                        <MiniCircleButton style={styles.iconStyle}
                                     name="edit-2"
                                     onPress={() => {navigation.navigate('Detail', { 
                                         id: item.id,
-                                        bodyText: item.bodyText ,
+                                        bodyText: item.bodyText,
                                         timeLeft: item.timeLeft,
                                         timeRight: item.timeRight,
                                         updatedAt: item.updatedAt
                                     });}}
-                                />}
-                            </Text>
-                        } />
+                        />
                     </View>
                 </View>
             );        
@@ -55,6 +50,7 @@ export default function CreateData(props) {
     return (
         <View style={styles.container}>
             <FlatList
+                inverted//反転
                 data={memos}
                 renderItem={renderItem}
                 keyExtractor={(item) => { return item.id; }}
@@ -96,9 +92,33 @@ const styles = StyleSheet.create({
         //paddingHorizontal: 19,
         //width: '21%',
         //textAlign: 'center',
+        //justifyContent: 'center',
+        //alignItems: 'center',
+        //position: 'absolute',
+    
     },
     tabledesign: {
         flexDirection: 'row',
         alignItems:'center',
+    },
+    iconStyle: {
+        //backgroundColor: '#ffffff',
+        //flexDirection: 'row',
+        //paddingVertical: 16,
+        //justifyContent: 'center',
+        //borderTopWidth: 0.5,
+        //borderBottomWidth: 0.5,
+        //borderTopColor : 'rgba(0, 0, 0, 100)',
+        //borderBottomColor: 'rgba(0, 0, 0, 100)',
+        //height: 50,
+        //marginBottom:1,
+        //marginBottom:1,
+        //textAlign: 'center',
+        //justifyContent: 'center',
+        //alignItems: 'center',
+        //position: 'absolute',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        //fontSize: 5,
     },
 });

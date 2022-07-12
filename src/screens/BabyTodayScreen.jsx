@@ -32,7 +32,7 @@ export default function BabyTodayScreen(props) {
         let unsubscribe = () => {};
         if (currentUser) {
             setLoading(true);
-            const ref = db.collection(`users/${currentUser.uid}/${year}/${month}/${day}`).orderBy('updatedAt', 'asc');
+            const ref = db.collection(`users/${currentUser.uid}/${year}/${month}/${day}`).orderBy('updatedAt', 'desc');
             unsubscribe = ref.onSnapshot((snapshot) => {
                 const userMemos = [];
                     snapshot.forEach((doc) => {
@@ -60,8 +60,8 @@ export default function BabyTodayScreen(props) {
     return (
         <View style={styles.container}>
             <Loading isLoading={isLoading} />
-            <View style={{height: '15%'}}>
-                <Datetime />
+            <View style={[styles.dateTime , {height: '15%'}]}>
+                <Datetime style={styles.dateTime} />
             </View>
             <View style={{height: '7%'}}>
                 <View style={styles.tableTitle}>
@@ -112,6 +112,26 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor : 'rgba(0, 0, 0, 100)',
         //paddingBottom: 50,
+    },
+    dateTime: {
+        //backgroundColor: '#ffffff',
+        //flexDirection: 'row',
+        //paddingVertical: 16,
+        //justifyContent: 'center',
+        //borderTopWidth: 0.5,
+        //borderBottomWidth: 0.5,
+        //borderTopColor : 'rgba(0, 0, 0, 100)',
+        //borderBottomColor: 'rgba(0, 0, 0, 100)',
+        //height: 50,
+        //marginBottom:1,
+        //marginBottom:1,
+        //textAlign: 'center',
+        justifyContent: 'center',
+        //alignItems: 'center',
+        //position: 'absolute',
+        //marginTop: 'auto',
+        //marginBottom: 'auto',
+        //fontSize: 30,
     },
     tableTitle: {
         flexDirection: 'row',
